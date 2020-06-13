@@ -3,6 +3,7 @@
 
 - Python Flask Server
 - Python Client
+- TypeScript Angular
 
 ### Powered by bAmpli-API
 
