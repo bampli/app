@@ -253,11 +253,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: companyid
+        - name: company_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by companyid
+            Allows to filter the collections of result by company_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -441,11 +441,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: companyid
+        - name: company_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by companyid
+            Allows to filter the collections of result by company_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -1008,11 +1008,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: companyid
+        - name: company_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by companyid
+            Allows to filter the collections of result by company_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -1132,7 +1132,7 @@ paths:
                       "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "companyid": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
       security:
         - HTTP_BASIC: []
@@ -1158,7 +1158,7 @@ paths:
         schema:
           type: string
 
-  /companyid/:
+  /company/:
     get:
       tags:
         - Company
