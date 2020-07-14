@@ -1266,8 +1266,8 @@ paths:
                         "city": "Paris",
                         "taxid": "29.691.807/0001-87"
                     }
-      security:
-        - HTTP_BASIC: []
+      #security:
+      #  - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Company'
 
@@ -1694,3 +1694,4 @@ components:
           the general public.
         type: http
         scheme: basic
+        x-basicInfoFunc: authorization_controller.check_HTTP_BASIC

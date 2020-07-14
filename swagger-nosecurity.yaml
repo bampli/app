@@ -64,11 +64,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: facility
+        - name: facility_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by facility
+            Allows to filter the collections of result by facility_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -102,10 +102,10 @@ paths:
                 response:
                   value: |-
                     [{
-                      "wip": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }]
         '400':
           description: Status 400
@@ -130,13 +130,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "wip": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Wip'
   '/wip/{wipid}':
@@ -157,10 +155,10 @@ paths:
                 response:
                   value: |-
                     {
-                      "wip": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
         '400':
           description: Status 400
@@ -185,13 +183,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "wip": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Wip'
     delete:
@@ -203,8 +199,6 @@ paths:
       responses:
         '200':
           description: Status 200
-      security:
-        - HTTP_BASIC: []
     parameters:
       - name: wipid
         in: path
@@ -253,11 +247,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: company
+        - name: company_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by company
+            Allows to filter the collections of result by company_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -291,10 +285,10 @@ paths:
                 response:
                   value: |-
                     [{
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }]
         '400':
           description: Status 400
@@ -319,13 +313,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Facility'
   '/facility/{facilityid}':
@@ -346,10 +338,10 @@ paths:
                 response:
                   value: |-
                     {
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
         '400':
           description: Status 400
@@ -374,13 +366,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "facility": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Facility'
     delete:
@@ -392,8 +382,6 @@ paths:
       responses:
         '200':
           description: Status 200
-      security:
-        - HTTP_BASIC: []
     parameters:
       - name: facilityid
         in: path
@@ -441,11 +429,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: company
+        - name: company_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by company
+            Allows to filter the collections of result by company_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -479,10 +467,10 @@ paths:
                 response:
                   value: |-
                     [{
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "P&Q Production Line",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }]
         '400':
           description: Status 400
@@ -507,13 +495,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "P&Q Production Line",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Cyclo'
   '/cyclo/{cycloid}':
@@ -534,10 +520,10 @@ paths:
                 response:
                   value: |-
                     {
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "P&Q Production Line",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
         '400':
           description: Status 400
@@ -562,13 +548,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "P&Q Production Line",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Cyclo'
     delete:
@@ -580,8 +564,6 @@ paths:
       responses:
         '200':
           description: Status 200
-      security:
-        - HTTP_BASIC: []
     parameters:
       - name: cycloid
         in: path
@@ -630,11 +612,11 @@ paths:
           x-example: Painting
           schema:
             type: string
-        - name: cyclo
+        - name: cyclo_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by cyclo
+            Allows to filter the collections of result by cyclo_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -668,10 +650,10 @@ paths:
                 response:
                   value: |-
                     [{
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Painting",
                       "active": true,
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }]
         '400':
           description: Status 400
@@ -696,13 +678,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Painting",
                       "active": true,
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Stage'
   '/stage/{stageid}':
@@ -723,10 +703,10 @@ paths:
                 response:
                   value: |-
                     {
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Painting",
                       "active": true,
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
         '400':
           description: Status 400
@@ -751,13 +731,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Painting",
                       "active": true,
-                      "cyclo": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Stage'
     delete:
@@ -769,8 +747,6 @@ paths:
       responses:
         '200':
           description: Status 200
-      security:
-        - HTTP_BASIC: []
     parameters:
       - name: stageid
         in: path
@@ -819,11 +795,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: stage
+        - name: stage_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by stage
+            Allows to filter the collections of result by stage_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -857,10 +833,10 @@ paths:
                 response:
                   value: |-
                     [{
-                      "task": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Paint",
                       "active": true,
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }]
         '400':
           description: Status 400
@@ -885,13 +861,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "task": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Paint",
                       "active": true,
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Task'
   '/task/{taskid}':
@@ -912,10 +886,10 @@ paths:
                 response:
                   value: |-
                     {
-                      "task": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Paint",
                       "active": true,
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
         '400':
           description: Status 400
@@ -940,13 +914,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "task": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Paint",
                       "active": true,
-                      "stage": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Task'
     delete:
@@ -958,8 +930,6 @@ paths:
       responses:
         '200':
           description: Status 200
-      security:
-        - HTTP_BASIC: []
     parameters:
       - name: taskid
         in: path
@@ -1008,11 +978,11 @@ paths:
           x-example: George Street Brewery
           schema:
             type: string
-        - name: company
+        - name: company_id
           in: query
           required: false
           description: >-
-            Allows to filter the collections of result by company
+            Allows to filter the collections of result by company_id
           x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
           schema:
             type: string
@@ -1046,10 +1016,10 @@ paths:
                 response:
                   value: |-
                     [{
-                      "product": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }]
         '400':
           description: Status 400
@@ -1074,13 +1044,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "product": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Product'
   '/product/{productid}':
@@ -1101,10 +1069,10 @@ paths:
                 response:
                   value: |-
                     {
-                      "product": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
         '400':
           description: Status 400
@@ -1129,13 +1097,11 @@ paths:
                 response:
                   value: |-
                     {
-                      "product": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "Intel BT200 Motherboard",
                       "active": true,
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Product'
     delete:
@@ -1147,8 +1113,6 @@ paths:
       responses:
         '200':
           description: Status 200
-      security:
-        - HTTP_BASIC: []
     parameters:
       - name: productid
         in: path
@@ -1227,7 +1191,7 @@ paths:
                 response:
                   value: |-
                     [{
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "George Street Brewery",
                       "address":{
                         "street": "2 place de la Defense",
@@ -1258,7 +1222,7 @@ paths:
                 response:
                   value: |-
                     {
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "George Street Brewery",
                       "address":{
                         "street": "2 place de la Defense",
@@ -1266,8 +1230,6 @@ paths:
                         "city": "Paris",
                         "taxid": "29.691.807/0001-87"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Company'
 
@@ -1289,7 +1251,7 @@ paths:
                 response:
                   value: |-
                     {
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "George Street Brewery",
                       "address":{
                         "street": "2 place de la Defense",
@@ -1320,7 +1282,7 @@ paths:
                 response:
                   value: |-
                     {
-                      "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
                       "name": "George Street Brewery",
                       "address":{
                         "street": "2 place de la Defense",
@@ -1328,8 +1290,6 @@ paths:
                         "city": "Paris",
                         "taxid": "29.691.807/0001-87"
                     }
-      security:
-        - HTTP_BASIC: []
       requestBody:
         $ref: '#/components/requestBodies/Company'
     delete:
@@ -1341,8 +1301,6 @@ paths:
       responses:
         '200':
           description: Status 200
-      security:
-        - HTTP_BASIC: []
     parameters:
       - name: companyid
         in: path
@@ -1379,11 +1337,11 @@ components:
       Product:
         type: object
         required:
-          - product
+          - product_id
           - name
-          - company
+          - company_id
         properties:
-          product:
+          product_id:
             type: string
             description: Auto-generated primary key field
             example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
@@ -1393,26 +1351,26 @@ components:
           active:
             type: boolean
             default: true
-          company:
+          company_id:
             type: string
             description: This property is a reference to a Company
             example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
         description: A representation of a Product.
         example: |-
           {
-            "product": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "product_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
             "name": "Fast Ethernet Adapter 10/100 Mbps",
             "active": true,
-            "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
           }
       Wip:
         type: object
         required:
-          - wip
+          - wip_id
           - name
-          - facility
+          - facility_id
         properties:
-          wip:
+          wip_id:
             type: string
             description: Auto-generated primary key field
             example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
@@ -1422,26 +1380,26 @@ components:
           active:
             type: boolean
             default: true
-          facility:
+          facility_id:
             type: string
             description: This property is a reference to a Facility
             example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
         description: A representation of a Work-in-Process.
         example: |-
           {
-            "wip": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "wip_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
             "name": "Fast Ethernet Adapter Panel",
             "active": true,
-            "facility": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+            "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
           }
       Facility:
         type: object
         required:
-          - facility
+          - facility_id
           - name
-          - company
+          - company_id
         properties:
-          facility:
+          facility_id:
             type: string
             description: Auto-generated primary key field
             example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
@@ -1451,26 +1409,26 @@ components:
           active:
             type: boolean
             default: true
-          company:
+          company_id:
             type: string
             description: This property is a reference to a Company
             example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
         description: A representation of a Facility.
         example: |-
           {
-            "facility": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "facility_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
             "name": "P&Q Facility",
             "active": true,
-            "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
           }
       Cyclo:
         type: object
         required:
-          - cyclo
+          - cyclo_id
           - name
-          - company
+          - company_id
         properties:
-          cyclo:
+          cyclo_id:
             type: string
             description: Auto-generated primary key field
             example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
@@ -1480,26 +1438,26 @@ components:
           active:
             type: boolean
             default: true
-          company:
+          company_id:
             type: string
             description: This property is a reference to a Company
             example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
         description: A representation of a Cyclo.
         example: |-
           {
-            "cyclo": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "cyclo_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
             "name": "P&Q Production Line",
             "active": true,
-            "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
           }
       Stage:
         type: object
         required:
-          - stage
+          - stage_id
           - name
-          - cyclo
+          - cyclo_id
         properties:
-          stage:
+          stage_id:
             type: string
             description: Auto-generated primary key field
             example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
@@ -1509,26 +1467,26 @@ components:
           active:
             type: boolean
             default: true
-          cyclo:
+          cyclo_id:
             type: string
             description: This property is a reference to a Cyclo
             example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
         description: A representation of a Stage.
         example: |-
           {
-            "stage": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "stage_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
             "name": "Assembly Station",
             "active": true,
-            "cyclo": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+            "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
           }
       Task:
         type: object
         required:
-          - task
+          - task_id
           - name
-          - stage
+          - stage_id
         properties:
-          task:
+          task_id:
             type: string
             description: Auto-generated primary key field
             example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
@@ -1538,27 +1496,27 @@ components:
           active:
             type: boolean
             default: true
-          stage:
+          stage_id:
             type: string
             description: This property is a reference to a Stage
             example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
         description: A representation of a Task.
         example: |-
           {
-            "task": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "task_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
             "name": "Painting",
             "active": true,
-            "stage": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+            "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
           }
       Contact:
         type: object
         required:
-          - contact
+          - contact_id
           - firstName
           - lastName
-          - company
+          - company_id
         properties:
-          contact:
+          contact_id:
             type: string
             description: Auto-generated primary key field
             example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
@@ -1579,7 +1537,7 @@ components:
           active:
             type: boolean
             default: true
-          company:
+          company_id:
             type: string
             description: This property is a reference to a Company
             example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
@@ -1592,16 +1550,16 @@ components:
             "taxid": "333.088.247/53",
             "birthday": 152755200000,
             "active": true,
-            "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
           }
       Company:
         type: object
         required:
-          - company
+          - company_id
           - name
           - address
         properties:
-          company:
+          company_id:
             type: string
             description: Auto-generated primary key field
           name:
@@ -1629,7 +1587,7 @@ components:
         description: A representation of a Company.
         example: |-
           {
-            "company": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
             "name": "George Street Brewery",
             "address":{
               "street": "2 place de la Defense",
@@ -1686,11 +1644,3 @@ components:
             schema:
               $ref: '#/components/schemas/Company'
         required: true
-  securitySchemes:
-      HTTP_BASIC:
-        description: >-
-          All GET methods are public, meaning that *you can read all the data*.
-          Write operations require authentication and therefore are forbidden to
-          the general public.
-        type: http
-        scheme: basic

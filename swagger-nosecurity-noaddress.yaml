@@ -1,0 +1,1601 @@
+openapi: 3.0.0
+servers:
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/motta/bampli/1.0.0-oas3
+  - url: 'https://virtserver.swaggerhub.com/motta/bampli/1.0.0'
+info:
+  description: The API for the Business Amplifier project.
+  version: "1.0.0-oas3"
+  title: bampli-api
+  contact:
+    email: josemotta@bampli.com
+    name: Jose Motta
+    url: 'http://bampli.com'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Company
+    description: Company operations
+  - name: Facility
+    description: Facility operations
+  - name: Cyclo
+    description: Cyclo operations
+
+paths:
+
+  /wip/:
+    get:
+      tags:
+        - Facility
+      summary: Load the list of Wips
+      operationId: searchWips
+      description: Loads list of Wips
+      parameters:
+        - name: $size
+          in: query
+          required: false
+          description: Size of the page to retrieve.
+          x-example: 10
+          schema:
+            type: integer
+        - name: $page
+          in: query
+          required: false
+          description: Number of the page to retrieve.
+          x-example: 1
+          schema:
+            type: number
+        - name: $sort
+          in: query
+          required: false
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=name ASC,city DESC
+          x-example: name ASC
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by name
+          x-example: George Street Brewery
+          schema:
+            type: string
+        - name: facility_id
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by facility_id
+          x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status 200
+          headers:
+            X-Page-Count:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Number:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Size:
+              x-example: 25
+              schema:
+                type: integer
+            X-Total-Count:
+              x-example: 2
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Wip'
+              examples:
+                response:
+                  value: |-
+                    [{
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }]
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Facility
+      summary: Create a new Wip
+      operationId: addWip
+      description: Adds a Wip
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wip'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Wip'
+  '/wip/{wipid}':
+    get:
+      tags:
+        - Facility
+      summary: Load an individual Wip
+      operationId: getWip
+      description: Loads a Wip
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wip'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Facility
+      summary: Update a Wip
+      operationId: updateWip
+      description: Stores a Wip
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wip'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "wip_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Wip'
+    delete:
+      tags:
+        - Facility
+      summary: Delete a Wip
+      operationId: deleteWip
+      description: Deletes a Wip
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: wipid
+        in: path
+        required: true
+        description: Identifier of the Wip
+        x-example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        schema:
+          type: string
+
+  /facility/:
+    get:
+      tags:
+        - Facility
+      summary: Load the list of Facilities
+      operationId: searchFacility
+      description: Loads list of Facilities
+      parameters:
+        - name: $size
+          in: query
+          required: false
+          description: Size of the page to retrieve.
+          x-example: 10
+          schema:
+            type: integer
+        - name: $page
+          in: query
+          required: false
+          description: Number of the page to retrieve.
+          x-example: 1
+          schema:
+            type: number
+        - name: $sort
+          in: query
+          required: false
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=name ASC,city DESC
+          x-example: name ASC
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by name
+          x-example: George Street Brewery
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by company_id
+          x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status 200
+          headers:
+            X-Page-Count:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Number:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Size:
+              x-example: 25
+              schema:
+                type: integer
+            X-Total-Count:
+              x-example: 2
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility'
+              examples:
+                response:
+                  value: |-
+                    [{
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }]
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Facility
+      summary: Create a new Facility
+      operationId: addFacility
+      description: Adds a Facility
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Facility'
+  '/facility/{facilityid}':
+    get:
+      tags:
+        - Facility
+      summary: Load an individual Facility
+      operationId: getFacility
+      description: Loads a Facility
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Facility
+      summary: Update a Facility
+      operationId: updateFacility
+      description: Stores a Facility
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Facility'
+    delete:
+      tags:
+        - Facility
+      summary: Delete a Facility
+      operationId: deleteFacility
+      description: Deletes a Facility
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: facilityid
+        in: path
+        required: true
+        description: Identifier of the Facility
+        x-example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        schema:
+          type: string
+
+  /cyclo/:
+    get:
+      tags:
+        - Cyclo
+      summary: Load the list of Cyclos
+      operationId: searchCyclos
+      description: Loads list of Cyclos
+      parameters:
+        - name: $size
+          in: query
+          required: false
+          description: Size of the page to retrieve.
+          x-example: 10
+          schema:
+            type: integer
+        - name: $page
+          in: query
+          required: false
+          description: Number of the page to retrieve.
+          x-example: 1
+          schema:
+            type: number
+        - name: $sort
+          in: query
+          required: false
+          description: >-
+            Order in which to retrieve the results.
+          x-example: name ASC
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by name
+          x-example: George Street Brewery
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by company_id
+          x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status 200
+          headers:
+            X-Page-Count:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Number:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Size:
+              x-example: 25
+              schema:
+                type: integer
+            X-Total-Count:
+              x-example: 2
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cyclo'
+              examples:
+                response:
+                  value: |-
+                    [{
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "P&Q Production Line",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }]
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Cyclo
+      summary: Create a new Cyclo
+      operationId: addCyclo
+      description: Adds a Cyclo
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cyclo'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "P&Q Production Line",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Cyclo'
+  '/cyclo/{cycloid}':
+    get:
+      tags:
+        - Cyclo
+      summary: Load an individual Cyclo
+      operationId: getCyclo
+      description: Loads a Cyclo
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cyclo'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "P&Q Production Line",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Cyclo
+      summary: Update a Cyclo
+      operationId: updateCyclo
+      description: Stores a Cyclo
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cyclo'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "P&Q Production Line",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Cyclo'
+    delete:
+      tags:
+        - Cyclo
+      summary: Delete a Cyclo
+      operationId: deleteCyclo
+      description: Deletes a Cyclo
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: cycloid
+        in: path
+        required: true
+        description: Identifier of the Cyclo
+        x-example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        schema:
+          type: string
+
+  /stage/:
+    get:
+      tags:
+        - Cyclo
+      summary: Load the list of Stages
+      operationId: searchStages
+      description: Loads list of Stages
+      parameters:
+        - name: $size
+          in: query
+          required: false
+          description: Size of the page to retrieve.
+          x-example: 10
+          schema:
+            type: integer
+        - name: $page
+          in: query
+          required: false
+          description: Number of the page to retrieve.
+          x-example: 1
+          schema:
+            type: number
+        - name: $sort
+          in: query
+          required: false
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=name ASC
+          x-example: name ASC
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by name
+          x-example: Painting
+          schema:
+            type: string
+        - name: cyclo_id
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by cyclo_id
+          x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status 200
+          headers:
+            X-Page-Count:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Number:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Size:
+              x-example: 25
+              schema:
+                type: integer
+            X-Total-Count:
+              x-example: 2
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+              examples:
+                response:
+                  value: |-
+                    [{
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Painting",
+                      "active": true,
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }]
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Cyclo
+      summary: Create a new Stage
+      operationId: addStage
+      description: Adds a Stage
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Painting",
+                      "active": true,
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Stage'
+  '/stage/{stageid}':
+    get:
+      tags:
+        - Cyclo
+      summary: Load an individual Stage
+      operationId: getStage
+      description: Loads a Stage
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Painting",
+                      "active": true,
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Cyclo
+      summary: Update a Stage
+      operationId: updateStage
+      description: Stores a Stage
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Painting",
+                      "active": true,
+                      "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Stage'
+    delete:
+      tags:
+        - Cyclo
+      summary: Delete a Stage
+      operationId: deleteStage
+      description: Deletes a Stage
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: stageid
+        in: path
+        required: true
+        description: Identifier of the Stage
+        x-example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        schema:
+          type: string
+
+  /task/:
+    get:
+      tags:
+        - Cyclo
+      summary: Load the list of Tasks
+      operationId: searchTasks
+      description: Loads list of Tasks
+      parameters:
+        - name: $size
+          in: query
+          required: false
+          description: Size of the page to retrieve.
+          x-example: 10
+          schema:
+            type: integer
+        - name: $page
+          in: query
+          required: false
+          description: Number of the page to retrieve.
+          x-example: 1
+          schema:
+            type: number
+        - name: $sort
+          in: query
+          required: false
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=name ASC,city DESC
+          x-example: name ASC
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by name
+          x-example: George Street Brewery
+          schema:
+            type: string
+        - name: stage_id
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by stage_id
+          x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status 200
+          headers:
+            X-Page-Count:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Number:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Size:
+              x-example: 25
+              schema:
+                type: integer
+            X-Total-Count:
+              x-example: 2
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+              examples:
+                response:
+                  value: |-
+                    [{
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Paint",
+                      "active": true,
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }]
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Cyclo
+      summary: Create a new Task
+      operationId: addTask
+      description: Adds a Task
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Paint",
+                      "active": true,
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Task'
+  '/task/{taskid}':
+    get:
+      tags:
+        - Cyclo
+      summary: Load an individual Task
+      operationId: getTask
+      description: Loads a Task
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Paint",
+                      "active": true,
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Cyclo
+      summary: Update a Task
+      operationId: updateTask
+      description: Stores a Task
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "task_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Paint",
+                      "active": true,
+                      "stage_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Task'
+    delete:
+      tags:
+        - Cyclo
+      summary: Delete a Task
+      operationId: deleteTask
+      description: Deletes a Task
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: taskid
+        in: path
+        required: true
+        description: Identifier of the Task
+        x-example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        schema:
+          type: string
+
+  /product/:
+    get:
+      tags:
+        - Company
+      summary: Load the list of Products
+      operationId: searchProducts
+      description: Loads list of Products
+      parameters:
+        - name: $size
+          in: query
+          required: false
+          description: Size of the page to retrieve.
+          x-example: 10
+          schema:
+            type: integer
+        - name: $page
+          in: query
+          required: false
+          description: Number of the page to retrieve.
+          x-example: 1
+          schema:
+            type: number
+        - name: $sort
+          in: query
+          required: false
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=name ASC,city DESC
+          x-example: name ASC
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by name
+          x-example: George Street Brewery
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by company_id
+          x-example: 0e8cedd0-ad98-11e6-bf2e-47644ada7c0f
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status 200
+          headers:
+            X-Page-Count:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Number:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Size:
+              x-example: 25
+              schema:
+                type: integer
+            X-Total-Count:
+              x-example: 2
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                response:
+                  value: |-
+                    [{
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }]
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Company
+      summary: Create a new Product
+      operationId: addProduct
+      description: Adds a Product
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Product'
+  '/product/{productid}':
+    get:
+      tags:
+        - Company
+      summary: Load an individual Product
+      operationId: getProduct
+      description: Loads a Product
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Company
+      summary: Update a Product
+      operationId: updateProduct
+      description: Stores a Product
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "product_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "Intel BT200 Motherboard",
+                      "active": true,
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47111ada7c0f"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Product'
+    delete:
+      tags:
+        - Company
+      summary: Delete a Product
+      operationId: deleteProduct
+      description: Deletes a Product
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: productid
+        in: path
+        required: true
+        description: Identifier of the Product
+        x-example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        schema:
+          type: string
+
+  /company/:
+    get:
+      tags:
+        - Company
+      summary: Load the list of Companies
+      operationId: searchCompanies
+      description: Loads list of Companies
+      parameters:
+        - name: $size
+          in: query
+          required: false
+          description: Size of the page to retrieve.
+          x-example: 10
+          schema:
+            type: integer
+        - name: $page
+          in: query
+          required: false
+          description: Number of the page to retrieve.
+          x-example: 1
+          schema:
+            type: number
+        - name: $sort
+          in: query
+          required: false
+          description: >-
+            Order in which to retrieve the results. Multiple sort criteria can
+            be passed. Example: sort=name ASC,city DESC
+          x-example: name ASC
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Allows to filter the collections of result by the value of name
+          x-example: George Street Brewery
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status 200
+          headers:
+            X-Page-Count:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Number:
+              x-example: 1
+              schema:
+                type: integer
+            X-Page-Size:
+              x-example: 25
+              schema:
+                type: integer
+            X-Total-Count:
+              x-example: 2
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+              examples:
+                response:
+                  value: |-
+                    [{
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "George Street Brewery"
+                    }]
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Company
+      summary: Create a new Company
+      operationId: addCompany
+      description: Adds a Company
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "George Street Brewery"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Company'
+
+  '/company/{companyid}':
+    get:
+      tags:
+        - Company
+      summary: Load an individual Company
+      operationId: getCompany
+      description: Loads a Company
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "George Street Brewery"
+                    }
+        '400':
+          description: Status 400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Company
+      summary: Update a Company
+      operationId: updateCompany
+      description: Stores a Company
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+              examples:
+                response:
+                  value: |-
+                    {
+                      "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+                      "name": "George Street Brewery"
+                    }
+      requestBody:
+        $ref: '#/components/requestBodies/Company'
+    delete:
+      tags:
+        - Company
+      summary: Delete a Company
+      operationId: deleteCompany
+      description: Deletes a Company
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: companyid
+        in: path
+        required: true
+        description: Identifier of the Company
+        x-example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        schema:
+          type: string
+
+components:
+  schemas:
+      Error:
+        type: object
+        required:
+          - code
+        properties:
+          code:
+            type: integer
+            minimum: 400
+            maximum: 599
+          description:
+            type: string
+            example: 'Bad query parameter [$size]: Invalid integer value [abc]'
+          reasonPhrase:
+            type: string
+            example: Bad Request
+        description: This general error structure is used throughout this API.
+        example: |-
+          {
+            "code": 400,
+            "description": "Bad query parameter [$size]: Invalid integer value [abc]",
+            "reasonPhrase": "Bad Request"
+          }
+      Product:
+        type: object
+        required:
+          - product_id
+          - name
+          - company_id
+        properties:
+          product_id:
+            type: string
+            description: Auto-generated primary key field
+            example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
+          name:
+            type: string
+            example: Fast Ethernet Adapter 10/100 Mbps
+          active:
+            type: boolean
+            default: true
+          company_id:
+            type: string
+            description: This property is a reference to a Company
+            example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        description: A representation of a Product.
+        example: |-
+          {
+            "product_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "name": "Fast Ethernet Adapter 10/100 Mbps",
+            "active": true,
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+          }
+      Wip:
+        type: object
+        required:
+          - wip_id
+          - name
+          - facility_id
+        properties:
+          wip_id:
+            type: string
+            description: Auto-generated primary key field
+            example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
+          name:
+            type: string
+            example: Fast Ethernet Adapter Panel
+          active:
+            type: boolean
+            default: true
+          facility_id:
+            type: string
+            description: This property is a reference to a Facility
+            example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        description: A representation of a Work-in-Process.
+        example: |-
+          {
+            "wip_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "name": "Fast Ethernet Adapter Panel",
+            "active": true,
+            "facility_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+          }
+      Facility:
+        type: object
+        required:
+          - facility_id
+          - name
+          - company_id
+        properties:
+          facility_id:
+            type: string
+            description: Auto-generated primary key field
+            example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
+          name:
+            type: string
+            example: P&Q Facility
+          active:
+            type: boolean
+            default: true
+          company_id:
+            type: string
+            description: This property is a reference to a Company
+            example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        description: A representation of a Facility.
+        example: |-
+          {
+            "facility_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "name": "P&Q Facility",
+            "active": true,
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+          }
+      Cyclo:
+        type: object
+        required:
+          - cyclo_id
+          - name
+          - company_id
+        properties:
+          cyclo_id:
+            type: string
+            description: Auto-generated primary key field
+            example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
+          name:
+            type: string
+            example: P&Q Production Line
+          active:
+            type: boolean
+            default: true
+          company_id:
+            type: string
+            description: This property is a reference to a Company
+            example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        description: A representation of a Cyclo.
+        example: |-
+          {
+            "cyclo_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "name": "P&Q Production Line",
+            "active": true,
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+          }
+      Stage:
+        type: object
+        required:
+          - stage_id
+          - name
+          - cyclo_id
+        properties:
+          stage_id:
+            type: string
+            description: Auto-generated primary key field
+            example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
+          name:
+            type: string
+            example: Assembly Station
+          active:
+            type: boolean
+            default: true
+          cyclo_id:
+            type: string
+            description: This property is a reference to a Cyclo
+            example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        description: A representation of a Stage.
+        example: |-
+          {
+            "stage_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "name": "Assembly Station",
+            "active": true,
+            "cyclo_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+          }
+      Task:
+        type: object
+        required:
+          - task_id
+          - name
+          - stage_id
+        properties:
+          task_id:
+            type: string
+            description: Auto-generated primary key field
+            example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
+          name:
+            type: string
+            example: Painting
+          active:
+            type: boolean
+            default: true
+          stage_id:
+            type: string
+            description: This property is a reference to a Stage
+            example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        description: A representation of a Task.
+        example: |-
+          {
+            "task_id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "name": "Painting",
+            "active": true,
+            "stage_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+          }
+      Contact:
+        type: object
+        required:
+          - contact_id
+          - firstName
+          - lastName
+          - company_id
+        properties:
+          contact_id:
+            type: string
+            description: Auto-generated primary key field
+            example: 0e8ffb10-ad98-11e6-bf2e-47644ada7c0f
+          firstName:
+            type: string
+            example: Kurt
+          lastName:
+            type: string
+            example: Williams
+          taxId:
+            type: string
+            example: 333.088.247/53
+          birthday:
+            type: integer
+            format: int64
+            description: Birthday as unix timestamp (in ms)
+            example: 173664000000
+          active:
+            type: boolean
+            default: true
+          company_id:
+            type: string
+            description: This property is a reference to a Company
+            example: 0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f
+        description: A representation of a Contact.
+        example: |-
+          {
+            "id": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f",
+            "firstName": "John",
+            "lastName": "Smith",
+            "taxid": "333.088.247/53",
+            "birthday": 152755200000,
+            "active": true,
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f"
+          }
+      Company:
+        type: object
+        required:
+          - company_id
+          - name
+
+        properties:
+          company_id:
+            type: string
+            description: Auto-generated primary key field
+          name:
+            type: string
+        description: A representation of a Company.
+        example: |-
+          {
+            "company_id": "0e8cedd0-ad98-11e6-bf2e-47644ada7c0f",
+            "name": "George Street Brewery"
+          }
+  requestBodies:
+      Task:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      Stage:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+        required: true
+      Cyclo:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cyclo'
+        required: true
+      Facility:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Facility'
+        required: true
+      Wip:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wip'
+        required: true
+      Product:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      Contact:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact'
+        required: true
+      Company:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
